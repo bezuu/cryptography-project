@@ -1,9 +1,10 @@
-import DES as d
+import TDES.DES as d
 
 
 def permIP(block):
     """
     Permutacja 64-bitowego bloku za pomocą permutacji IP.
+    Na podstawie: https://csrc.nist.gov/csrc/media/publications/fips/46/3/archive/1999-10-25/documents/fips46-3.pdf
     :param block: Blok, który ma zostać spermutowany.
     :return: Spermutowany blok.
     """
@@ -15,6 +16,7 @@ def permIP(block):
 def permIPReverse(block):
     """
     Permutacja 64-bitowego bloku za pomocą permutacji IP.
+    Na podstawie: https://csrc.nist.gov/csrc/media/publications/fips/46/3/archive/1999-10-25/documents/fips46-3.pdf
     :param block: Blok, który ma zostać spermutowany.
     :return: Spermutowany blok.
     """
@@ -26,6 +28,7 @@ def permIPReverse(block):
 def functionE(block):
     """
     Działanie funkcji E na 32-bitowy blok.
+    Na podstawie: https://csrc.nist.gov/csrc/media/publications/fips/46/3/archive/1999-10-25/documents/fips46-3.pdf
     :param block: Blok, który ma zostać poddany działaniu funkcji E.
     :return: Wynik działania funkcji E na podany blok. Wynik ma 48-bitów.
     """
@@ -37,6 +40,7 @@ def functionE(block):
 def permP(block):
     """
     Permutacja 32-bitowego bloku za pomocą permutacji IP.
+    Na podstawie: https://csrc.nist.gov/csrc/media/publications/fips/46/3/archive/1999-10-25/documents/fips46-3.pdf
     :param block: Blok, który ma zostać spermutowany.
     :return: Spermutowany blok.
     """
@@ -47,8 +51,8 @@ def permP(block):
 
 def PermutedChoice1(key):
     """
-    Funkcja najpierw dzieli klucz na dwa 28-bitowe bloki,
-    a następnie je permutuje.
+    Funkcja najpierw dzieli klucz na dwa 28-bitowe bloki, a następnie je permutuje.
+    Na podstawie: https://csrc.nist.gov/csrc/media/publications/fips/46/3/archive/1999-10-25/documents/fips46-3.pdf
     :param key: Klucz, na który chcemy zadziałać tą funkcją.
     :return: Zwracany jest wygenerowany klucz lewy i prawy, oba mają
     po 28-bitów.
@@ -65,8 +69,8 @@ def PermutedChoice1(key):
 
 def LeftShift(key, number_iteration):
     """
-    Przesuwamy 28 bitów klucza w lewo. Liczba przesunięć zależna jest
-    od numeru iteracji.
+    Przesuwamy 28 bitów klucza w lewo. Liczba przesunięć zależna jest od numeru iteracji.
+    Na podstawie: https://csrc.nist.gov/csrc/media/publications/fips/46/3/archive/1999-10-25/documents/fips46-3.pdf
     :param key: Klucz, który chcemy przesunąć.
     :param number_iteration: Numer rundy, w której jest generowany klucz.
     :return: Zwracany jest przesunięty klucz.
@@ -82,6 +86,7 @@ def LeftShift(key, number_iteration):
 def PermutedChoice2(keyLeft,keyRight):
     """
     Funkcja wybiera 48 bitów z dwóch 28-bitowych kluczy.
+    Na podstawie: https://csrc.nist.gov/csrc/media/publications/fips/46/3/archive/1999-10-25/documents/fips46-3.pdf
     :param keyLeft: Klucz lewy.
     :param keyRight: Klucz prawy.
     :return: 48-bitowy klucz.
@@ -95,6 +100,7 @@ def PermutedChoice2(keyLeft,keyRight):
 def SBox(block):
     """
     Funkcja działa na podany block 8 S-Boxami.
+    Na podstawie: https://csrc.nist.gov/csrc/media/publications/fips/46/3/archive/1999-10-25/documents/fips46-3.pdf
     :param block: 48-bitowy blok wejściowy.
     :return: 32-bitowy blok po wyniku działania 8 S-Boxów.
     """
@@ -113,6 +119,7 @@ def SBox(block):
 def encrypt(block,key):
     """
     Funkcja szyfruje podany blok, przy za pomocą podanego klucza.
+    Na podstawie: https://csrc.nist.gov/csrc/media/publications/fips/46/3/archive/1999-10-25/documents/fips46-3.pdf
     :param block: Blok tekstu, który chcemy zaszyfrować.
     :param key: Klucz, którym chcemy zaszyfrować tekst.
     :return: Zaszyfrowany tekst.
@@ -142,12 +149,10 @@ def encrypt(block,key):
     return permIPReverse(block)
 
 
-plaintext ='123456ABCD132536'
-key = 'AABB09182736CCDD'
-
 def decrypt(block,key):
     """
     Funkcja odszyfrowuje podany blok tekstu, za pomocą klucza.
+    Na podstawie: https://csrc.nist.gov/csrc/media/publications/fips/46/3/archive/1999-10-25/documents/fips46-3.pdf
     :param block: Blok tekstu, który chcemy odszyfrować.
     :param key: Klucz, za pomocą którego, chcemy odszyfrować wiadomość.
     :return: Odszyfrowana wiadomość.
@@ -189,6 +194,7 @@ def decrypt(block,key):
 def TripleDesEncrypt(block, key1, key2, key3):
     """
     Funkcja szyfruje 64-bitowy blok tekstu algorytmem 3DES za pomocą trzech kluczy.
+    Na podstawie: https://csrc.nist.gov/csrc/media/publications/fips/46/3/archive/1999-10-25/documents/fips46-3.pdf
     :param block: Blok tekstu, który chcemy zaszyfrować algorytmem 3DES.
     :param key1: Pierwszy klucz.
     :param key2: Drugi klucz.
@@ -200,6 +206,7 @@ def TripleDesEncrypt(block, key1, key2, key3):
 def TripleDesDecrypt(block, key1, key2, key3):
     """
     Funkcja odszyfrowuje 64-bitowy blok tekstu algorytmem 3DES za pomocą trzech kluczy.
+    Na podstawie: https://csrc.nist.gov/csrc/media/publications/fips/46/3/archive/1999-10-25/documents/fips46-3.pdf
     :param block: Blok tekstu, który chcemy odszyfrować.
     :param key1: Pierwszy klucz.
     :param key2: Drugi Klucz.
@@ -207,6 +214,7 @@ def TripleDesDecrypt(block, key1, key2, key3):
     :return: Tekst odszyfrowany algorytmem 3DES.
     """
     return decrypt(encrypt(decrypt(block,key3),key2),key1)
+
 
 # https://csrc.nist.gov/CSRC/media/Projects/Cryptographic-Standards-and-Guidelines/documents/examples/TDES_Core.pdf
 # Szyfrowanie:
